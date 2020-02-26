@@ -34,8 +34,7 @@ ostream cnull(NULL);
 typedef unsigned long long ULL;
 typedef long long LL;
 typedef pair<int, int> PII;
-typedef vector<LL> VI;
-typedef pair<LL, LL> PLL;
+typedef vector<int> VI;
 
 const int INF = 1000 * 1000 * 1000;
 const LL LINF = 1LL * INF * INF;

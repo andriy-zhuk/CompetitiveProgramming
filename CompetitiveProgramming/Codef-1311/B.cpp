@@ -34,102 +34,65 @@
 //typedef unsigned long long ULL;
 //typedef long long LL;
 //typedef pair<int, int> PII;
-//typedef vector<LL> VI;
-//typedef pair<LL, LL> PLL;
+//typedef vector<int> VI;
 //
-//const unsigned int INF = 2100 * 1000 * 1000;
+//const int INF = 1000 * 1000 * 1000;
 //const LL LINF = 1LL * INF * INF;
 //const int MAX = 100010;
 //const long double PI = acos(-1.);
 //const double EPS = 1e-6;
 //const LL MOD = INF + 7;
-//int n, k;
-//int d[81][81];
-//vector<PII> path[81][81];
+//int n,m;
+//int a[202];
+//bool can[202];
 //
-//void init()
+//void solve()
 //{
-//	multiset<pair<int, int> > foo;
+//	FILL(can, 0);
+//	cin >> n >> m;
 //	FOR(i, 0, n)
 //	{
-//		FOR(j, 0, n)
-//		{
-//			FOR(k, 1, n)
-//			{
-//				if (i == k || j == k)
-//					continue;
-//				path[i][j].PB(MP(d[i][k] + d[k][j], k));
-//			}
-//			sort(ALL(path[i][j]));
-//		}
+//		cin >> a[i];
 //	}
-//}
-//vector<int> a;
-//LL best = LINF;
-//
-//void rec()
-//{	
-//	if (a.size() == k / 2)
+//	FOR(j, 0, m)
 //	{
-//		a.PB(0);
-//		LL dist = 0;
-//		int aa = 0;
-//		FOR(i, 0, a.size() - 1)
+//		int x;
+//		cin >> x;
+//		can[x - 1] = true;
+//	}
+//	FOR(i, 0, n - 1)
+//	{
+//		FOR(j, 0, n - i - 1)
 //		{
-//			int u = a[i];
-//			int v = a[i + 1];
-//			FOR(k, 0, path[u][v].size())
+//			if (a[j] > a[j + 1] && can[j])
 //			{
-//				int w = path[u][v][k].second;
-//				bool ok = true;
-//				FOR(i, 0, a.size())
-//					if (w == a[i])
-//						ok = false;
-//				if (ok)
-//				{
-//					aa++;
-//					dist += path[u][v][k].first;
-//					break;
-//				}
+//				swap(a[j], a[j + 1]);
 //			}
 //		}
-//		if (aa == a.size())
-//		{
-//			best = min(best, dist);
-//		}
-//		a.pop_back();
-//		return;
 //	}
-//	int last = a.back();
-//	FOR(i, 0, n)
+//	FOR(i, 0, n - 1)
 //	{
-//		a.push_back(i);
-//		rec();
-//		a.pop_back();
+//		if (a[i] > a[i + 1])
+//		{
+//			cout << "NO" << endl; return;
+//		}
 //	}
-//}
+//	cout << "YES" << endl;
 //
+//
+//}
 //
 //int main()
 //{
 //	ios_base::sync_with_stdio(0);
 //	//freopen("input.txt", "r", stdin);
 //	//freopen("output.txt", "w", stdout);
-//	cin >> n >> k;
-//	FOR(i, 0, n)
+//	int t;
+//	cin >> t;
+//	while (t--)
 //	{
-//		FOR(j, 0, n)
-//		{
-//			cin >> d[i][j];
-//		}
+//		solve();
 //	}
-//	a.PB(0);
-//	init();
-//	
-//	
-//	rec();
-//	cout << best << endl;
-//
 //	return 0;
 //}
 //
