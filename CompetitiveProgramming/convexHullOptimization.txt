@@ -1,0 +1,43 @@
+bool Q;
+struct Line {
+	mutable LL k, m, p;
+	bool operator<(const Line& o) const 
+	{
+		return Q ? p < o.p : k < o.k;
+	}
+};
+
+struct CHO : multiset<Line> {
+	// (for doubles, use LINF = 1/.0, div(a,b) = a/b)
+	LL div(LL a, LL b) 
+	{
+		return a / b - ((a ^ b) < 0 && a % b);
+	}
+	bool isect(iterator x, iterator y) 
+	{
+		if (y == end()) { 
+			x->p = LINF; return false; 
+		}
+		if (x->k == y->k)
+			x->p = x->m > y->m ? LINF : -LINF;
+		else 
+			x->p = div(y->m - x->m, x->k - y->k);
+		return x->p >= y->p;
+	}
+	void add(LL k, LL m) {
+		auto z = insert({ k, m, 0 }), y = z++, x = y;
+		while (isect(y, z)) z = erase(z);
+		if (x != begin() && isect(--x, y)) isect(x, y = erase(y));
+		while ((y = x) != begin() && (--x)->p >= y->p)
+			isect(x, erase(y));
+	}
+	LL query(LL x) 
+	{
+		if (empty())
+			return 0;
+		Q = 1;
+		auto l = *lower_bound({ 0,0,x }); 
+		Q = 0;
+		return l.k * x + l.m;
+	}
+};

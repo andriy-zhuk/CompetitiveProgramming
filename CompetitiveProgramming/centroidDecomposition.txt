@@ -1,0 +1,51 @@
+namespace CENTROID
+{
+	int SZ[MAX];
+	int U[MAX];
+	
+	void dfsSZ(int u, int p = -1)
+	{
+		SZ[u] = 1;
+		FOR(i, 0, SZ(g[u]))
+		{
+			int  v = g[u][i];
+			if (v == p || U[v])
+				continue;
+			dfsSZ(v, u);
+			SZ[u] += SZ[v];
+		}
+	}
+
+	void build(int x) {
+		dfsSZ(x);
+		int szAll = SZ[x];
+		int p = x;
+		while (true) {
+			int w = -1;
+			FOR(i, 0, SZ(g[x]))
+			{
+				int to = g[x][i];
+				if (to == p || U[to])
+					continue;
+				if (SZ[to] * 2 > szAll)
+				{
+					w = to;
+					break;
+				}
+			}
+			if (w == -1)
+				break;
+			p = x;
+			x = w;
+		}
+		U[x] = true;  
+		
+		// action
+
+		FOR(i, 0, SZ(g[x]))
+		{
+			int to = g[x][i];
+			if (!U[to]) build(to);
+		}
+	}
+}
