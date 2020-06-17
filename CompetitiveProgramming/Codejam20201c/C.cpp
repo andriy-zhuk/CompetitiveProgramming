@@ -37,14 +37,53 @@ const int MAX = 100010;
 const long double PI = acos(-1.);
 const double EPS = 1e-6;
 const LL MOD = INF + 7;
-
-
+LL a[300];
+void solve()
+{
+	map<LL, int> foo;
+	int n;
+	int d;
+	cin >> n >> d;
+	FOR(i, 0, n)
+	{
+		cin >> a[i];
+		foo[a[i]]++;
+	}
+	for (auto& iter : foo)
+	{
+		if (iter.second >= d)
+		{
+			cout << 0 << endl;
+			return;
+		}
+	}
+	if (d == 2)
+	{
+		cout << 1 << endl;
+		return;
+	}
+	for (auto& iter : foo)
+	{
+		if (foo.count(iter.first*2) != 0 || (iter.second >= 2 && (--foo.end())->first != iter.first ))
+		{
+			cout << 1 << endl;
+			return;
+		}
+	}
+	cout << 2 << endl;
+}
 int main()
 {
 	ios_base::sync_with_stdio(0);
 	//freopen("input.txt", "r", stdin);
 	//freopen("output.txt", "w", stdout);
-
+	int t;
+	cin >> t;
+	FOR(tt, 1, t+1)
+	{
+		cout << "Case #" << tt << ": ";
+		solve();
+	}
 	return 0;
 }
 

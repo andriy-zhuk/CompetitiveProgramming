@@ -37,14 +37,82 @@ const int MAX = 100010;
 const long double PI = acos(-1.);
 const double EPS = 1e-6;
 const LL MOD = INF + 7;
+int n;
+int a[200005];
+int ans[200005];
 
+void solve()
+{
+	cin >> n;
+	set<int> foo;
+	FOR(i, 0, n)
+	{
+		cin >> a[i];
+		foo.insert(a[i]);
+	}
+	if (foo.size() == 1)
+	{
+		cout << 1 << endl;
+		FOR(i, 0, n)
+		{
+			cout << 1 << ' ';
+		}
+		cout << endl;
+		return;
+	}
+	int beg = 0;
+	while (a[beg] == a[(beg + 1) % n])
+		beg = (beg+1)%n;
+	int cur = (beg + 1) % n;
+	int tt = 1;
+	while (cur != beg)
+	{
+		if (a[cur] != a[(cur + 1) % n])
+		{
+			tt++;
+		}
+		cur = (cur + 1) % n;
+	}
+	int kk;
+	if (tt % 2 == 0)
+	{
+		kk = 2;
+	}
+	else
+	{
+		kk = 3;
+	}
+	cur = (beg + 1) % n;
+	int col = 0;
+	do
+	{
+		if (a[cur] != a[(cur + n-1) % n])
+		{
+			col = col + 1;
+			col %= kk;
+		}
+		ans[cur] = col + 1;
+		cur = (cur + 1) % n;
+	} while (cur != beg+1);
+	cout << kk << endl;
+	FOR(i, 0, n)
+	{
+		cout << ans[i] << ' ';
+	}
+	cout << endl;
+}
 
 int main()
 {
 	ios_base::sync_with_stdio(0);
 	//freopen("input.txt", "r", stdin);
 	//freopen("output.txt", "w", stdout);
-
+	int t;
+	cin >> t;
+	while (t--)
+	{
+		solve();
+	}
 	return 0;
 }
 

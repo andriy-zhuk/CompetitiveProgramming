@@ -37,6 +37,10 @@ const int MAX = 100010;
 const long double PI = acos(-1.);
 const double EPS = 1e-6;
 const LL MOD = INF + 7;
+int n, m;
+int l[200005];
+
+int ans[200005];
 
 
 int main()
@@ -44,7 +48,34 @@ int main()
 	ios_base::sync_with_stdio(0);
 	//freopen("input.txt", "r", stdin);
 	//freopen("output.txt", "w", stdout);
+	cin >> n >> m;
+	vector<PII> foo;
+	int suma = 0;
+	FOR(i, 0, m)
+	{
+		cin >> l[i];
+		foo.PB(MP(l[i], i));
+		suma += l[i];
+	}
 
+	if (suma < n || (suma - foo.back().first) < m-1)
+	{
+		cout << -1 << endl;
+		return 0;
+	}
+
+	ans[m - 1] = n - l[m-1];
+
+
+
+
+
+
+	FOR(i, 0, m)
+	{
+		cout << ans[i] + 1 << ' ';
+	}
+	cout << endl;
 	return 0;
 }
 

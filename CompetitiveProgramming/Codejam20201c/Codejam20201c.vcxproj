@@ -20,8 +20,8 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{25ECFC71-5359-4EF6-B0DB-D7897CBBE670}</ProjectGuid>
-    <RootNamespace>Diploma</RootNamespace>
+    <ProjectGuid>{E0619902-89A0-4E37-9F59-0C8914357CA1}</ProjectGuid>
+    <RootNamespace>Codejam20201c</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -123,11 +123,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="dc.cpp" />
-    <ClCompile Include="matrixExp.cpp" />
-    <ClCompile Include="queueDp.cpp" />
-    <ClCompile Include="Source.cpp" />
-    <ClCompile Include="vecExp.cpp" />
+    <ClCompile Include="A.cpp" />
+    <ClCompile Include="B.cpp" />
+    <ClCompile Include="C.cpp" />
+    <ClCompile Include="gen.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="input.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
